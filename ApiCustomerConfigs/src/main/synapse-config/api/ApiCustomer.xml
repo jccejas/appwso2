@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/customers" name="ApiCustomer" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <payloadFactory media-type="json">
+                <format>{                "identifier": "deb89058-77fb-4e97-8c83-6506c38cacf8",                "firstName": "Jason",                "lastName": "Bourne",                "paymentMethods": [                    {                      "identifier": "deb89058-77fb-4e97-8c83-6506c38c4444",                      "paymentMethodType": {                        "medium": "CARD",                        "issuer": "BANK",                        "name": "VISA"                      }                    }                ],                "deliveryAddresses": [                    {                      "type": "BILLING",                      "identifier": "deb89058-77fb-4e97-8c83-6506c3855555",                      "address": "Main street 122",                      "city": "San Francisco",                      "state": "California",                      "postalCode": "90210",                      "recipient": "Jason Bourne",                      "country": "US",                      "secondaryAddress": null,                      "mailStopCode": null,                      "attention": null                    }                ]              }</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="GET" uri-template="?firstName={uri.var.fn}&amp;lastName={uri.var.ln}">
+        <inSequence>
+            <property expression="$ctx:uri.var.fn" name="uri.var.fn" scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+            <property expression="$ctx:uri.var.ln" name="uri.var.ln" scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+            <payloadFactory media-type="json">
+                <format>{                "_meta": {                  "messages": []                },                "customers": [                  {                    "identifier": "deb89058-77fb-4e97-8c83-6506c38cacf8",                    "firstName": "Jason",                    "lastName": "Bourne",                    "paymentMethods": [                      {                        "paymentMethodType": {                          "medium": "CARD",                          "issuer": "BANK",                          "name": "VISA"                        }                      }                    ],                    "deliveryAddresses": [                      {                        "identifier": "deb89058-77fb-4e97-8c83-6506c38cacf8",                        "type": "BILLING",                        "address": "Main street 122",                        "city": "San Francisco",                        "state": "California",                        "postalCode": "90210",                        "recipient": "Jason Bourne",                        "country": "US",                        "secondaryAddress": "",                        "mailStopCode": "",                        "attention": ""                      }                    ]                  }                ]              }</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="GET" uri-template="/{customerId}">
+        <inSequence>
+            <payloadFactory media-type="json">
+                <format>{                  "identifier": "deb89058-77fb-4e97-8c83-6506c38cacf8",                  "firstName": "Jason",                  "lastName": "Bourne",                  "paymentMethods": [                    {                      "paymentMethodType": {                        "medium": "CARD",                        "issuer": "BANK",                        "name": "VISA"                      }                    }                  ],                  "deliveryAddresses": [                    {                      "identifier": "deb89058-77fb-4e97-8c83-6506c38cacf8",                      "address": "Main street 122",                      "type": "BILLING",                      "city": "San Francisco",                      "state": "California",                      "postalCode": "90210",                      "recipient": "Jason Bourne",                      "country": "US",                      "secondaryAddress": null,                      "mailStopCode": null,                      "attention": null                    },                    {                      "identifier": "deb89058-77fb-4e97-8c83-6506c38cacf8",                      "address": "Main street 122",                      "type": "SHIPPING",                      "city": "San Francisco",                      "state": "California",                      "postalCode": "90210",                      "recipient": "Jason Bourne",                      "country": "US",                      "secondaryAddress": null,                      "mailStopCode": null,                      "attention": null                    }                  ]                }</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="PUT" url-mapping="/customer">
+        <inSequence>
+            <payloadFactory media-type="json">
+                <format>{                  "identifier": "deb89058-77fb-4e97-8c83-6506c38cacf8",                  "firstName": "Jason",                  "lastName": "Bourne",                  "paymentMethods": [                    {                      "paymentMethodType": {                        "medium": "CARD",                        "issuer": "BANK",                        "name": "VISA"                      }                    }                  ],                  "deliveryAddresses": [                    {                      "identifier": "deb89058-77fb-4e97-8c83-6506c38cacf8",                      "type": "BILLING",                      "address": "Main street 122",                      "city": "San Francisco",                      "state": "California",                      "postalCode": "90210",                      "recipient": "Jason Bourne",                      "country": "US",                      "secondaryAddress": null,                      "mailStopCode": null,                      "attention": null                    },                    {                      "identifier": "deb89058-77fb-4e97-8c83-6506c38cacf8",                      "type": "SHIPPING",                      "address": "Main street 122",                      "city": "San Francisco",                      "state": "California",                      "postalCode": "90210",                      "recipient": "Jason Bourne",                      "country": "US",                      "secondaryAddress": null,                      "mailStopCode": null,                      "attention": null                    }                  ]                }</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="DELETE" uri-template="/{customerId}">
+        <inSequence>
+            <payloadFactory media-type="json">
+                <format>{                  "_meta": {                    "messages": "Deleted customer"                  }                }</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

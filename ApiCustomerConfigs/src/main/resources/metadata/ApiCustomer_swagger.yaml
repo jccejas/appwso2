@@ -1,0 +1,65 @@
+openapi: 3.0.1
+info:
+  title: ApiCustomer
+  description: API Definition of ApiCustomer
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/customers
+paths:
+  /:
+    post:
+      responses:
+        default:
+          description: Default response
+  ?firstName={uri.var.fn}&lastName={uri.var.ln}:
+    get:
+      parameters:
+      - name: uri.var.fn
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: uri.var.ln
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response
+  /{customerId}:
+    get:
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response
+    delete:
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response
+  /customer:
+    put:
+      requestBody:
+        description: Sample Payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  type: object
+        required: false
+      responses:
+        default:
+          description: Default response

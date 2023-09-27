@@ -1,0 +1,11 @@
+---
+key: "ApiCustomer-1.0.0"
+name : "ApiCustomer"
+displayName : "ApiCustomer"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/customers"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
+apiId : "null"
